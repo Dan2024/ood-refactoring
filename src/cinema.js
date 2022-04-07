@@ -9,10 +9,12 @@ class Cinema {
     if (capacity > 100) return "Exceeded max capacity";
 
     //Check the screen doesn't already exist
+    // method extraction?
     for (let i = 0; i < this.screens.length; i++) {
       if (this.screens[i].name === screenName) return "Screen already exists";
     }
 
+    // potential class extraction
     this.screens.push({
       name: screenName,
       capacity: capacity,
@@ -22,16 +24,14 @@ class Cinema {
 
   //Add a new film
   addNew(movieName, r, duration) {
+    //Check the rating is valid
+    const ratings = ["U", "PG", "12", "15", "18"];
+
+    if (!ratings.includes(r)) return "Invalid rating";
+
     //Check the film doesn't already exist
     for (let i = 0; i < this.films.length; i++) {
       if (this.films[i].name == movieName) return "Film already exists";
-    }
-
-    //Check the rating is valid
-    if (r != "U" && r != "PG") {
-      if (r != "12" && r != "15" && r != "18") {
-        return "Invalid rating";
-      }
     }
 
     //Check duration
@@ -46,6 +46,7 @@ class Cinema {
       return "Invalid duration";
     }
 
+    //  potential movie class extarction
     this.films.push({ name: movieName, rating: r, duration: duration });
   }
 
